@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="//db.onlinewebfonts.com/c/95cecf452d3208890088a5b4c19c7ecf?family=Helvetica+Neue+ME" rel="stylesheet" type="text/css"/>
+  <link rel="shortcut icon" href="{% static 'logo.png' %}" />
+	<title>Loan Prediction</title>
+
+	<style>
+:root {
+  --primary-color: #010712;
+  --secondary-color: #818386;
+  --bg-color: #FCFDFD;
+  --button-color: #3B3636;
+  --h1-color: #3F444C;
+}
+
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  /*overflow-x: hidden;*/
+  transition: all 0.3s ease-in-out;
+}
+
+.contact-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background: var(--bg-color);
+}
+
+.left-col {
+  width: 45vw;
+  height: 150%;
+  background-image: url("https://images.pexels.com/photos/931018/pexels-photo-931018.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.logo {
+  width: 10rem;
+  padding: 1.5rem;
+}
+
+.right-col {
+  background: var(--bg-color);
+  width: 49vw;
+  height: 100vh;
+  padding: 5rem 3.5rem;
+}
+
+h1, label, button, .description {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+}
+
+h1 {
+  color:var(--h1-color);
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  letter-spacing: 0.5rem;
+  font-weight: 300;
+}
+
+p {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+  letter-spacing: 0.01rem;
+  width: 40vw;
+  margin: 0.25rem 0;
+}
+
+label{
+  color: var(--secondary-color);
+  text-transform: uppercase;
+  font-size: 0.625rem;
+}
+
+form {
+  width: 31.25rem;
+  position: relative;
+  margin-top: 2rem;
+  padding: 1rem 0;
+}
+
+input, textarea, label {
+  width: 40vw;
+  display: block;
+}
+
+p, placeholder, input, textarea {
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--primary-color);
+}
+
+input, textarea {
+  color: var(--primary-color);
+  font-weight: 500;
+  background: var(--bg-color);
+  border: none;
+  border-bottom: 1px solid var(--secondary-color);
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  text-transform: uppercase;
+  font-weight: 300;
+  background: var(--button-color);
+  color: var(--bg-color);
+  width: 10rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+input:hover, textarea:hover, button:hover {
+  opacity: 0.5;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+
+input:checked {
+  background-color: var(--button-color);
+}
+
+input:checked{
+  transform: translateX(26px);
+}
+
+
+}
+
+
+@media only screen and (max-width: 950px) {
+  .logo {
+    width: 8rem;
+  }
+  h1 {
+    font-size: 1.75rem;
+  }
+  p {
+    font-size: 0.7rem;
+  }
+  input, textarea, button {
+    font-size: 0.65rem;
+  }
+  
+  button {
+    width: 7rem;
+  }
+
+  input:checked {
+  transform: translateX(16px);
+}
+
+
+}
+	</style>
+</head>
+
+<body>
+
+
+<div class="contact-container">
+  <div class="left-col">
+    <img class="logo" src="{% static 'logo.png' %}"/>
+  </div>
+  <div class="right-col">
+
+    <h1>Loan Prediction</h1>
+    <p>Planning to get home loan soon? Fill up your details and check your eligibility.</p>
+    
+    <form id="contact-form" method="post" action="{% url 'prediction'%}">
+      {%csrf_token%}
+
+      <label for="gender">Gender</label>
+      <input type="text" id="gen" name="Gender" required>
+
+      <label for="married">Married</label>
+      <input type="text" id="married" name="Married" required>
+
+      <label for="dependents">Dependents</label>
+      <input type="text" id="dependents" name="Dependents" required>
+
+      <label for="education">Education</label>
+      <input type="text" id="education" name="Education" required>
+
+      <label for="self_employed">Self Employed</label>
+      <input type="text" id="self_employed" name="Self_Employed" required>
+
+      <label for="applicant_income">Applicant Income</label>
+      <input type="text" id="applicant_income" name="ApplicantIncome" required>
+
+      <label for="coapplicant_income">Co-Applicant Income</label>
+      <input type="text" id="coapplicant_income" name="CoapplicantIncome" required>
+
+      <label for="loan_amount">Loan Amount</label>
+      <input type="text" id="loan_amount" name="LoanAmount" required>
+
+      <label for="loan_amount_term">Loan Amount Term</label>
+      <input type="text" id="loan_amount_term" name="Loan_Amount_Term" required>
+
+      <label for="credit_history">Credit History</label>
+      <input type="text" id="credit_history" name="Credit_History" required>
+
+      <label for="property_area">Property Area</label>
+      <input type="text" id="property_area" name="Property_Area" required>
+
+      <button type="submit" id="submit" name="submit">Send</button>
+  
+    </form>
+
+
+ 
+
+</body>
+</html>
